@@ -6,18 +6,15 @@ All algorithms are implemented like sklearn's implementation. Files can be impor
 
 
 * Clustering
-
-1. KMeans Clustering
-2. KMedoids Clustering
+  1. KMeans Clustering
+  2. KMedoids Clustering
 
 
 * Classification
-
-1. KNN
-2. Logistic Regression
-3. Naive Bayes (Guassian)
+  1. KNN
+  2. Logistic Regression
+  3. Naive Bayes (Guassian)
 
 
 * Association
-
-1. Apriori Algorithm
+  1. Apriori Algorithm
