@@ -17,6 +17,7 @@ All algorithms are implemented like sklearn's implementation. Files can be impor
   1. KNN
   2. Logistic Regression
   3. Naive Bayes (Guassian)
+  4. Linear Regression (Bayesian)
 
 
 * Association
