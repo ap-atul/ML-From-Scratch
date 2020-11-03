@@ -10,7 +10,7 @@ def euclidean(points, center):
     return np.sqrt(distance)
 
 
-class KMeans:
+class KMedian:
     def __init__(self, k=2, tol=0.001, max_iter=300):
         self.k = k
         self.tol = tol
@@ -39,9 +39,9 @@ class KMeans:
 
             prev_centroids = dict(self.centroids)
 
-            # recal mean/centroid
+            # recal median/centroid
             for classification in self.classifications:
-                self.centroids[classification] = np.average(self.classifications[classification], axis=0)
+                self.centroids[classification] = np.median(self.classifications[classification], axis=0)
 
             optimized = True
 

@@ -6,11 +6,16 @@ All algorithms are implemented like sklearn's implementation. Files can be impor
 
 * Feature Selection
   1. Genetic Algorithm
+  
+  
+* Feature extraction
+  1. TF-IDF Vectorizer
 
 
 * Clustering
   1. KMeans Clustering
   2. KMedoids Clustering
+  3. KMedian Clustering
 
 
 * Classification
