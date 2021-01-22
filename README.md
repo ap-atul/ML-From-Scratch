@@ -23,7 +23,7 @@ All algorithms are implemented like sklearn's implementation. Files can be impor
   2. Logistic Regression
   3. Naive Bayes (Guassian)
   4. Linear Regression (Bayesian)
-
+  5. Simple Linear Regression (y = max + b)
 
 * Association
   1. Apriori Algorithm
