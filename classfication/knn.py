@@ -1,50 +1,24 @@
-from collections import Counter
+from math import sqrt
 
-from scipy.spatial import distance
-from tqdm import tqdm
+def euclidean(a, b):
+    return sqrt(sum([(a_i - b_i) ** 2 for a_i, b_i in zip(a, b)]))
 
+def accuracy(act, pred):
+    return (sum([1 for yt, yp in zip(act, pred) if yt == yp]) / len(pred))
 
-class KNN:
-    def fit(self, X_train, Y_train):
-        """
-        KNN does not have any training phase so
-        just initialization
-        :param X_train: training data
-        :param Y_train: training labels
-        :return: updates the classifier
-        """
-        self.X_train = X_train
-        self.Y_train = Y_train
+class Knn:
+    def __init__(self):
+        self.xtrain, self.ytrain = None, None
+
+    def fit(self, X_train, y_train):
+        self.xtrain, self.ytrain = X_train, y_train
 
     def predict(self, X_test, k=5):
-        """
-        function to predict from the training data
-        :param X_test: test data
-        :param k: neighbours count
-        :return: list of predictions
-        """
-        predictions = []
-        for row in tqdm(X_test):
-            label = self.closest(row, k)
-            predictions.append(label)
-        return predictions
+        return [self.closet(row, k) for row in X_test]
 
-    def closest(self, row, k):
-        """
-        function to do actual predict for each data
-        :param row: single list
-        :param k: neighbours count
-        :return: prediction a single label(0 /1)
-        """
-        distances = []
-        for i in range(len(self.X_train)):
-            distances.append((i, distance.euclidean(row, self.X_train[i])))
-        distances = sorted(distances, key=lambda x: x[1])[0:k]
-        k_indices = []
-        for i in range(k):
-            k_indices.append(distances[i][0])
-        k_labels = []
-        for i in range(k):
-            k_labels.append(self.Y_train[k_indices[i]])
-        c = Counter(k_labels)
-        return c.most_common()[0][0]
+    def closet(self, row, k):
+        distances = [(i, euclidean(row, self.xtrain[i])) for i in range(len(self.xtrain))]
+        distances = sorted(distances, key=lambda x: x[1])[0: k]
+        k_indices = [distances[i][0] for i in range(k)]
+        k_labels = [self.ytrain[k_indices[i]] for i in range(k)]
+        return max(set(k_labels), key=k_labels.count)
