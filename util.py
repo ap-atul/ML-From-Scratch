@@ -57,3 +57,23 @@ def max_error(y_true, y_pred):
 def sigmoid(x):
     """ Sigmoid activation function"""
     return 1 / (1 + np.exp(-x))
+
+
+def r2_score(y_true, y_pred):
+    """
+    r2 = 1 - (rss/ tss)
+    rss = sum{i=0}^{n} (y_i - y_hat) ^ 2
+    tss = sum{i=0}^{n} (y_i - y_bar) ^ 2
+    """
+    y_values = y_true.values
+    y_average = np.average(y_values)
+
+    residual_sum_of_squares = 0
+    total_sum_of_squares = 0
+
+    for i in range(len(y_values)):
+        residual_sum_of_squares += (y_values[i] - y_pred[i])**2
+        total_sum_of_squares += (y_values[i] - y_average)**2
+
+    return 1 - (residual_sum_of_squares/total_sum_of_squares)
+
